@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Trophy, Apple, Users, Calendar, MapPin, MessageCircle, Target } from 'lucide-react';
 
 function App() {
+  const [isSending, setIsSending] = useState(false);
   useEffect(() => {
     const io = new IntersectionObserver(
       (entries) => {
@@ -267,7 +268,7 @@ function App() {
               <p className="text-gray-600 text-xs">Developer</p>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
             {/* Row 2 - Centered */}
             <div className="text-center">
               <img src="https://i.pravatar.cc/160?img=5" alt="Sakshi Burse" className="w-20 h-20 rounded-full mx-auto mb-4 object-cover" />
@@ -293,35 +294,46 @@ function App() {
         <div className="absolute -bottom-24 left-0 gradient-blob" style={{ background: 'radial-gradient(circle at 30% 30%, rgba(59,130,246,.18), rgba(59,130,246,0) 60%)' }} />
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Get in Touch</h2>
-          <p className="text-gray-600 mb-8">Our platform is launching soon! Have questions or ideas? Drop<br />us a message and we'll get back to you.</p>
+          <p className="text-gray-600 mb-8">Our platform is launching soon! Have questions or ideas?<br />Drop us a message and we'll get back to you.</p>
           <form
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
               const form = e.currentTarget as HTMLFormElement;
               const data = new FormData(form);
               const name = String(data.get('name') || '');
               const email = String(data.get('email') || '');
               const message = String(data.get('message') || '');
-              const to = 'hello@towncup.com';
-              const subject = `TownCup Contact from ${name}`;
-              const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
-              window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+              setIsSending(true);
+              try {
+                const resp = await fetch('/api/send-email', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ name, email, message })
+                });
+                if (!resp.ok) throw new Error('Failed to send');
+                alert('Message sent!');
+                form.reset();
+              } catch (err) {
+                alert('Sorry, something went wrong. Please try again.');
+              } finally {
+                setIsSending(false);
+              }
             }}
             className="space-y-4 text-left"
           >
             <div>
               <label className="block text-sm text-gray-700 mb-1">Name</label>
-              <input name="name" type="text" required placeholder="Your full name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+              <input name="name" type="text" required placeholder="Your full name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:opacity-60" disabled={isSending} />
             </div>
             <div>
               <label className="block text-sm text-gray-700 mb-1">Email</label>
-              <input name="email" type="email" required placeholder="you@example.com" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+              <input name="email" type="email" required placeholder="you@example.com" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:opacity-60" disabled={isSending} />
             </div>
             <div>
               <label className="block text-sm text-gray-700 mb-1">Message</label>
-              <textarea name="message" rows={4} required placeholder="Write your message..." className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+              <textarea name="message" rows={4} required placeholder="Write your message..." className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:opacity-60" disabled={isSending} />
             </div>
-            <button type="submit" className="w-full sm:w-auto bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 mx-auto block">Send Message</button>
+            <button type="submit" className="w-full sm:w-auto bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 mx-auto block disabled:opacity-60" disabled={isSending} aria-busy={isSending}> {isSending ? 'Opening email…' : 'Send Message'} </button>
           </form>
         </div>
       </section>
@@ -338,7 +350,7 @@ function App() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-10 pt-6 border-t border-gray-700 text-xs text-gray-400 flex flex-col sm:flex-row items-center justify-between">
-          <p>Towncup Sports Inc., Copyright © 2019-2025</p>
+          <p>Townty Sports Inc., Copyright © 2019-2025</p>
           <p>100-713 Columbia Street, New Westminster, BC, V3M 1B9, Canada</p>
         </div>
       </footer>

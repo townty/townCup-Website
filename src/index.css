@@ -31,6 +31,8 @@ html {
   opacity: .35;
   background: radial-gradient(circle at 30% 30%, rgba(249, 115, 22, 0.55), rgba(249, 115, 22, 0) 60%);
   animation: blob 16s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
 }
 
 @keyframes blob {
