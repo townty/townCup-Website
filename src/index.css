@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global font: Lato */
+:root {
+  --tw-font-sans: 'Lato', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+html {
+  font-family: var(--tw-font-sans);
+  scroll-behavior: smooth;
+}
+
+/* Animated gradient blobs & reveal animations for Awwwards-like polish */
+/* page-level gradient only (avoid hard edges between sections) */
+
+/* Subtle site-wide background */
+.page-gradient {
+  background-image:
+    radial-gradient(1200px 600px at 100% -20%, rgba(249, 115, 22, 0.06), transparent 65%),
+    radial-gradient(1200px 600px at -20% 110%, rgba(2, 132, 199, 0.05), transparent 70%);
+}
+
+.gradient-blob {
+  position: absolute;
+  width: 40rem;
+  height: 40rem;
+  border-radius: 9999px;
+  filter: blur(60px);
+  opacity: .35;
+  background: radial-gradient(circle at 30% 30%, rgba(249, 115, 22, 0.55), rgba(249, 115, 22, 0) 60%);
+  animation: blob 16s ease-in-out infinite;
+}
+
+@keyframes blob {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  25% { transform: translate(10%, -8%) scale(1.05); }
+  50% { transform: translate(-6%, 6%) scale(0.98); }
+  75% { transform: translate(8%, 10%) scale(1.07); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gradient text + shine effect */
+.text-gradient-orange {
+  background-image: linear-gradient(90deg, #f97316 0%, #fb923c 30%, #f59e0b 60%, #f97316 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.shine {
+  background-image:
+    linear-gradient(90deg, #f97316 0%, #fb923c 30%, #f59e0b 60%, #f97316 100%),
+    linear-gradient(120deg, transparent 45%, rgba(255,255,255,0.65) 50%, transparent 55%);
+  background-size: 100% 100%, 220% 100%;
+  background-position: center, -120% 0;
+  -webkit-background-clip: text, text;
+  background-clip: text, text;
+  animation: shine-sweep 4s ease-in-out infinite;
+}
+@keyframes shine-sweep {
+  0% { background-position: center, -120% 0; }
+  55% { background-position: center, 120% 0; }
+  100% { background-position: center, 120% 0; }
+}
+
+/* (marquee removed) */
