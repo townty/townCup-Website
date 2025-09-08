@@ -6,6 +6,9 @@ function App() {
   const API_BASE = typeof window !== 'undefined' && window.location.hostname === 'localhost'
     ? (import.meta as any).env?.VITE_PROD_URL || 'https://town-cup-website.vercel.app'
     : '';
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
+  const canSubmit = form.name.trim().length > 0 && isValidEmail && form.message.trim().length > 0;
   useEffect(() => {
     const io = new IntersectionObserver(
       (entries) => {
@@ -301,11 +304,7 @@ function App() {
           <form
             onSubmit={async (e) => {
               e.preventDefault();
-              const form = e.currentTarget as HTMLFormElement;
-              const data = new FormData(form);
-              const name = String(data.get('name') || '');
-              const email = String(data.get('email') || '');
-              const message = String(data.get('message') || '');
+              const { name, email, message } = form;
               setIsSending(true);
               try {
                 const resp = await fetch(`${API_BASE}/api/send-email`, {
@@ -315,7 +314,7 @@ function App() {
                 });
                 if (!resp.ok) throw new Error('Failed to send');
                 alert('Message sent!');
-                form.reset();
+                setForm({ name: '', email: '', message: '' });
               } catch (err) {
                 alert('Sorry, something went wrong. Please try again.');
               } finally {
@@ -326,17 +325,17 @@ function App() {
           >
             <div>
               <label className="block text-sm text-gray-700 mb-1">Name</label>
-              <input name="name" type="text" required placeholder="Your full name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:opacity-60" disabled={isSending} />
+              <input name="name" type="text" required placeholder="Your full name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" />
             </div>
             <div>
               <label className="block text-sm text-gray-700 mb-1">Email</label>
-              <input name="email" type="email" required placeholder="you@example.com" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:opacity-60" disabled={isSending} />
+              <input name="email" type="email" required placeholder="you@example.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" />
             </div>
             <div>
               <label className="block text-sm text-gray-700 mb-1">Message</label>
-              <textarea name="message" rows={4} required placeholder="Write your message..." className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:opacity-60" disabled={isSending} />
+              <textarea name="message" rows={4} required placeholder="Write your message..." value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" />
             </div>
-            <button type="submit" className="w-full sm:w-auto bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 mx-auto block disabled:opacity-60" disabled={isSending} aria-busy={isSending}> {isSending ? 'Opening email…' : 'Send Message'} </button>
+            <button type="submit" className="w-full sm:w-auto bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 mx-auto block disabled:opacity-60" disabled={isSending || !canSubmit}>Send Message</button>
           </form>
         </div>
       </section>
