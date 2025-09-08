@@ -40,16 +40,16 @@ function App() {
         <div className="absolute -bottom-40 -left-10 gradient-blob" style={{ background: 'radial-gradient(circle at 30% 30%, rgba(59,130,246,.45), rgba(59,130,246,0) 60%)' }} />
         <div className="max-w-7xl mx-auto reveal">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
+            <div className="space-y-8 text-center lg:text-left">
               <div className="space-y-4">
                 <div className="inline-flex items-center px-4 py-2 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">
                   <Trophy className="w-4 h-4 mr-2" />
                   Sports Platform
                 </div>
                 <h1 className="text-5xl lg:text-6xl font-black text-gray-900 leading-tight tracking-tight">
-                  Go Beyond Limits with
-                  <span className="ml-2 text-gradient-orange shine inline-block">
-                    TownCup
+                  Go Beyond Limits
+                  <span className="block">
+                    with <span className="text-gradient-orange shine inline-block">TownCup</span>
                   </span>
                 </h1>
                 <div className="h-[2px] w-48 bg-gradient-to-r from-orange-500/80 via-orange-400 to-transparent rounded-full" />
@@ -60,10 +60,10 @@ function App() {
                   The TownCup app will be available for iOS and Android soon.
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <button
                   onClick={() => alert('Coming soon')}
-                  className="flex items-center space-x-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition-colors"
+                  className="flex items-center justify-center space-x-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition-colors w-56"
                   aria-label="App Store badge"
                 >
                   <Apple className="w-6 h-6" />
@@ -74,7 +74,7 @@ function App() {
                 </button>
                 <button
                   onClick={() => alert('Coming soon')}
-                  className="flex items-center space-x-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition-colors"
+                  className="flex items-center justify-center space-x-3 bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-800 transition-colors w-56"
                   aria-label="Google Play badge"
                 >
                   <svg className="w-6 h-6" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -158,6 +158,28 @@ function App() {
               </p>
             </div>
 
+            {/* Group Management */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:-translate-y-1 hover:ring-1 hover:ring-orange-200 cursor-pointer" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
+              <div className="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center mb-6">
+                <Users className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Group Management</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Create rosters, track player statistics, manage schedules, and handle membership fees—all in one place to keep your group organized.
+              </p>
+            </div>
+
+            {/* Group Communication */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:-translate-y-1 hover:ring-1 hover:ring-orange-200 cursor-pointer" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
+              <div className="w-16 h-16 bg-indigo-500 rounded-2xl flex items-center justify-center mb-6">
+                <MessageCircle className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Group Communication</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Built-in messaging and coordination tools to keep your team connected and organized.
+              </p>
+            </div>
+
             {/* Event Management */}
             <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:-translate-y-1 hover:ring-1 hover:ring-orange-200 cursor-pointer" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
               <div className="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center mb-6">
@@ -180,25 +202,36 @@ function App() {
               </p>
             </div>
 
-            {/* Location-Based */}
+            {/* Book Officials */}
             <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:-translate-y-1 hover:ring-1 hover:ring-orange-200 cursor-pointer" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
               <div className="w-16 h-16 bg-pink-500 rounded-2xl flex items-center justify-center mb-6">
                 <MapPin className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Location-Based</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Book Officials</h3>
               <p className="text-gray-600 leading-relaxed">
-                Find players, teams, and events near you. Connect with your local sports community effortlessly.
+                Easily search for and book qualified referees and scorekeepers to ensure fairness and professionalism in every match.
               </p>
             </div>
 
-            {/* Team Communication */}
+            {/* Book Trainers/Coachs */}
             <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:-translate-y-1 hover:ring-1 hover:ring-orange-200 cursor-pointer" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
-              <div className="w-16 h-16 bg-indigo-500 rounded-2xl flex items-center justify-center mb-6">
-                <MessageCircle className="w-8 h-8 text-white" />
+              <div className="w-16 h-16 bg-orange-400 rounded-2xl flex items-center justify-center mb-6">
+                <Users className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Team Communication</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Book Trainers/Coachs</h3>
               <p className="text-gray-600 leading-relaxed">
-                Built-in messaging and coordination tools to keep your team connected and organized.
+                Access experienced trainers and coaches to sharpen your skills and boost your performance.
+              </p>
+            </div>
+
+            {/* Book Venues */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:-translate-y-1 hover:ring-1 hover:ring-orange-200 cursor-pointer" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
+              <div className="w-16 h-16 bg-blue-400 rounded-2xl flex items-center justify-center mb-6">
+                <MapPin className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Book Venues</h3>
+              <p className="text-gray-600 leading-relaxed">
+                Discover and reserve top venues for matches or practice sessions, conveniently located near you.
               </p>
             </div>
           </div>
@@ -260,77 +293,48 @@ function App() {
         <div className="absolute -bottom-24 left-0 gradient-blob" style={{ background: 'radial-gradient(circle at 30% 30%, rgba(59,130,246,.18), rgba(59,130,246,0) 60%)' }} />
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Get in Touch</h2>
-          <p className="text-gray-600 mb-8">Our platform is launching soon! Have questions or ideas? Drop us a message and we'll get back to you.</p>
+          <p className="text-gray-600 mb-8">Our platform is launching soon! Have questions or ideas? Drop<br />us a message and we'll get back to you.</p>
           <form
-            onSubmit={(e) => { e.preventDefault(); alert('Message sent!'); }}
+            onSubmit={(e) => {
+              e.preventDefault();
+              const form = e.currentTarget as HTMLFormElement;
+              const data = new FormData(form);
+              const name = String(data.get('name') || '');
+              const email = String(data.get('email') || '');
+              const message = String(data.get('message') || '');
+              const to = 'hello@towncup.com';
+              const subject = `TownCup Contact from ${name}`;
+              const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+              window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            }}
             className="space-y-4 text-left"
           >
             <div>
               <label className="block text-sm text-gray-700 mb-1">Name</label>
-              <input type="text" required placeholder="Your full name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+              <input name="name" type="text" required placeholder="Your full name" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" />
             </div>
             <div>
               <label className="block text-sm text-gray-700 mb-1">Email</label>
-              <input type="email" required placeholder="you@example.com" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+              <input name="email" type="email" required placeholder="you@example.com" className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" />
             </div>
             <div>
               <label className="block text-sm text-gray-700 mb-1">Message</label>
-              <textarea rows={4} required placeholder="Write your message..." className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+              <textarea name="message" rows={4} required placeholder="Write your message..." className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" />
             </div>
-            <button type="submit" className="w-full sm:w-auto bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600">Send Message</button>
+            <button type="submit" className="w-full sm:w-auto bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 mx-auto block">Send Message</button>
           </form>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-gray-300 px-6 py-12">
-        <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-4">
+        <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-1">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <img src="/favicon.png" alt="TownCup" className="w-7 h-7 rounded" />
+              <img src="/favicon.svg" alt="TownCup" className="w-7 h-7 rounded" />
               <span className="text-white font-semibold">Towncup</span>
             </div>
             <p className="text-sm">Connecting athletes and sports enthusiasts while enabling clubs, leagues, and communities to create and organize.</p>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-3">Features</h4>
-            <ul className="space-y-2 text-sm">
-              <li>Create Teams</li>
-              <li>League System</li>
-              <li>Find Players</li>
-              <li>Challenge Others</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-3">Support</h4>
-            <ul className="space-y-2 text-sm">
-              <li>Help Center</li>
-              <li>Community Guidelines</li>
-              <li>Privacy & Terms</li>
-              <li>Contact Us</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-3">Contact Info</h4>
-            <ul className="space-y-2 text-sm">
-              <li>hello@towncup.com</li>
-              <li>+1 (905) 123-4567</li>
-              <li>San Francisco, CA</li>
-            </ul>
-            <div className="mt-4 space-x-3">
-              <button onClick={() => alert('Coming soon')} className="inline-flex items-center bg-black text-white px-4 py-2 rounded-lg">
-                <Apple className="w-4 h-4 mr-2" /> App Store
-              </button>
-              <button onClick={() => alert('Coming soon')} className="inline-flex items-center bg-black text-white px-4 py-2 rounded-lg">
-                <svg className="w-4 h-4 mr-2" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M96 64l256 192L96 448V64z" fill="#34A853"/>
-                  <path d="M352 256L96 64l224 224-224 224 256-192z" fill="#FBBC05"/>
-                  <path d="M320 288l64-48-64-48L192 64l160 224z" fill="#EA4335"/>
-                  <path d="M96 448l224-224 64 48L96 448z" fill="#4285F4"/>
-                </svg>
-                Google Play
-              </button>
-            </div>
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-10 pt-6 border-t border-gray-700 text-xs text-gray-400 flex flex-col sm:flex-row items-center justify-between">
