@@ -3,6 +3,9 @@ import { Trophy, Apple, Users, Calendar, MapPin, MessageCircle, Target } from 'l
 
 function App() {
   const [isSending, setIsSending] = useState(false);
+  const API_BASE = typeof window !== 'undefined' && window.location.hostname === 'localhost'
+    ? (import.meta as any).env?.VITE_PROD_URL || 'https://town-cup-website.vercel.app'
+    : '';
   useEffect(() => {
     const io = new IntersectionObserver(
       (entries) => {
@@ -305,7 +308,7 @@ function App() {
               const message = String(data.get('message') || '');
               setIsSending(true);
               try {
-                const resp = await fetch('/api/send-email', {
+                const resp = await fetch(`${API_BASE}/api/send-email`, {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({ name, email, message })
