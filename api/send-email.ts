@@ -1,7 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Resend } from 'resend';
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 const TO = 'junghyungu@towncup.com';
 const ALLOWED_ORIGINS = [
   'http://localhost:5173',
@@ -37,15 +35,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     const isProd = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
+    const apiKey = process.env.RESEND_API_KEY;
     const from = process.env.RESEND_FROM || (!isProd ? 'onboarding@resend.dev' : '');
-    if (!process.env.RESEND_API_KEY) {
+    if (!apiKey) {
       console.error('Missing RESEND_API_KEY');
-      return res.status(500).json({ error: 'Server missing email credentials' });
+      return res.status(500).json({ error: 'Server missing email credentials (RESEND_API_KEY)' });
     }
     if (!from) {
       console.error('Missing RESEND_FROM');
-      return res.status(500).json({ error: 'Server missing sender address' });
+      return res.status(500).json({ error: 'Server missing sender address (RESEND_FROM)' });
     }
+    const resend = new Resend(apiKey);
     const subject = `TownCup Contact from ${name}`;
     const text = `Name: ${name}\nEmail: ${email}\n\n${message}`;
     const html = `

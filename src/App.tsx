@@ -348,7 +348,7 @@ function App() {
               <img src="/favicon.svg" alt="TownCup" className="w-7 h-7 rounded" />
               <span className="text-white font-semibold">Towncup</span>
             </div>
-            <p className="text-sm">Connecting athletes and sports enthusiasts while enabling clubs, leagues, and communities to create and organize.</p>
+            <p className="text-sm">Connect athletes and sports enthusiasts while empowering clubs, leagues, and communities to create and organize with ease.</p>
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-10 pt-6 border-t border-gray-700 text-xs text-gray-400 flex flex-col sm:flex-row items-center justify-between">
