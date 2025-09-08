@@ -1,0 +1,9 @@
+[build]
+  command = "yarn build"
+  publish = "dist"
+
+# Ensure SPA routing works on refresh
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
