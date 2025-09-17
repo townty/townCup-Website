@@ -54,14 +54,15 @@ function App() {
                   Sports Platform
                 </div>
                 <h1 className="text-5xl lg:text-6xl font-black text-gray-900 leading-tight tracking-tight">
-                  Go Beyond Limits
+                 Level up
+                  <span className="block">Your Sports Journey</span>
                   <span className="block">
                     with <span className="text-gradient-orange shine inline-block">TownCup</span>
                   </span>
                 </h1>
                 <div className="h-[2px] w-48 bg-gradient-to-r from-orange-500/80 via-orange-400 to-transparent rounded-full" />
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  Expand your sports journey! TownCup is the all-in-one platform for players, teams, clubs, and leagues to connect, organize matches and tournaments, track results, and manage events seamlessly.
+                  Connect with players, teams, clubs, and leagues. Easily organize matches, run tournaments, and manage all your events in one place. TownCup makes playing easier.
                 </p>
                 <p className="text-lg text-gray-500">
                   The TownCup app will be available for iOS and Android soon.
@@ -139,7 +140,10 @@ function App() {
         </svg>
         <div className="max-w-7xl mx-auto reveal">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-gray-900">Everything You Need to <span className="text-gradient-orange">Elevate Your Sports</span></h2>
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight text-gray-900">
+              Everything You Need to
+              <span className="block text-gradient-orange">Elevate Your Sports</span>
+            </h2>
             <p className="text-gray-600 mt-3 max-w-3xl mx-auto">TownCup gives you all the tools to create, manage, and participate in your local sports activities.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
