@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Trophy, Apple, Users, Calendar, MapPin, MessageCircle, Target } from 'lucide-react';
+import JunghyunImage from './images/junghyimage.png';
+import VineetImage from './images/VineetImage.jpg';
+import KishanImage from './images/KishanImage.jpeg';
+import PratikImage from './images/PratikImage.JPG';
+import SakshiImage from './images/SakshiImage.PNG';
+import PragyeshImage from './images/PragyeshImage.png';
+import VikashImage from './images/VikashImage.png';
 
 function App() {
   const [isSending, setIsSending] = useState(false);
+  const envVars = import.meta.env as unknown as Record<string, string | undefined>;
   const API_BASE = typeof window !== 'undefined' && window.location.hostname === 'localhost'
-    ? (import.meta as any).env?.VITE_PROD_URL || 'https://town-cup-website.vercel.app'
+    ? envVars['VITE_PROD_URL'] || 'https://town-cup-website.vercel.app'
     : '';
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
@@ -258,22 +266,30 @@ function App() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             {/* Row 1 */}
             <div className="text-center">
-              <img src="https://i.pravatar.cc/160?img=68" alt="Junghyun Gu" className="w-20 h-20 rounded-full mx-auto mb-4 object-cover" />
+              <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
+                <img src={JunghyunImage} alt="Junghyun Gu" className="w-full h-full object-cover" />
+              </div>
               <h3 className="font-semibold text-gray-900 text-sm">Junghyun Gu</h3>
               <p className="text-gray-600 text-xs">CEO</p>
             </div>
             <div className="text-center">
-              <img src="https://i.pravatar.cc/160?img=12" alt="Vineet Partida" className="w-20 h-20 rounded-full mx-auto mb-4 object-cover" />
-              <h3 className="font-semibold text-gray-900 text-sm">Vineet Partida</h3>
+              <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
+                <img src={VineetImage} alt="Vineet Partida" className="w-full h-full object-cover" />
+              </div>
+              <h3 className="font-semibold text-gray-900 text-sm">Vineet Patidar</h3>
               <p className="text-gray-600 text-xs">Lead Developer</p>
             </div>
             <div className="text-center">
-              <img src="https://i.pravatar.cc/160?img=33" alt="Kishan Makani" className="w-20 h-20 rounded-full mx-auto mb-4 object-cover" />
+              <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
+                <img src={KishanImage} alt="Kishan Makani" className="w-full h-full object-cover" />
+              </div>
               <h3 className="font-semibold text-gray-900 text-sm">Kishan Makani</h3>
               <p className="text-gray-600 text-xs">Developer</p>
             </div>
             <div className="text-center">
-              <img src="https://i.pravatar.cc/160?img=55" alt="Pratik Patre" className="w-20 h-20 rounded-full mx-auto mb-4 object-cover" />
+              <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
+                <img src={PratikImage} alt="Pratik Patre" className="w-full h-full object-cover" />
+              </div>
               <h3 className="font-semibold text-gray-900 text-sm">Pratik Patre</h3>
               <p className="text-gray-600 text-xs">Developer</p>
             </div>
@@ -281,17 +297,23 @@ function App() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
             {/* Row 2 - Centered */}
             <div className="text-center">
-              <img src="https://i.pravatar.cc/160?img=5" alt="Sakshi Burse" className="w-20 h-20 rounded-full mx-auto mb-4 object-cover" />
+              <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
+                <img src={SakshiImage} alt="Sakshi Burse" className="w-full h-full object-cover" />
+              </div>
               <h3 className="font-semibold text-gray-900 text-sm">Sakshi Burse</h3>
               <p className="text-gray-600 text-xs">Developer</p>
             </div>
             <div className="text-center">
-              <img src="https://i.pravatar.cc/160?img=22" alt="Vikash Mishra" className="w-20 h-20 rounded-full mx-auto mb-4 object-cover" />
+              <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
+                <img src={VikashImage} alt="Vikash Mishra" className="w-full h-full object-cover" />
+              </div>
               <h3 className="font-semibold text-gray-900 text-sm">Vikash Mishra</h3>
               <p className="text-gray-600 text-xs">QA Tester</p>
             </div>
             <div className="text-center">
-              <img src="https://i.pravatar.cc/160?img=28" alt="Pragyesh Mishra" className="w-20 h-20 rounded-full mx-auto mb-4 object-cover" />
+              <div className="w-24 h-24 rounded-full mx-auto mb-4 overflow-hidden">
+                <img src={PragyeshImage} alt="Pragyesh Mishra" className="w-full h-full object-cover" />
+              </div>
               <h3 className="font-semibold text-gray-900 text-sm">Pragyesh Mishra</h3>
               <p className="text-gray-600 text-xs">QA Tester</p>
             </div>
@@ -305,7 +327,7 @@ function App() {
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Get in Touch</h2>
           <p className="text-gray-600 mb-8">Our platform is launching soon! Have questions or ideas?<br />Drop us a message and we'll get back to you.</p>
-          <form
+            <form
             onSubmit={async (e) => {
               e.preventDefault();
               const { name, email, message } = form;
@@ -319,7 +341,8 @@ function App() {
                 if (!resp.ok) throw new Error('Failed to send');
                 alert('Message sent!');
                 setForm({ name: '', email: '', message: '' });
-              } catch (err) {
+                } catch (error) {
+                  console.error(error);
                 alert('Sorry, something went wrong. Please try again.');
               } finally {
                 setIsSending(false);
